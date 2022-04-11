@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <title>API ONE PIECE | Personajes </title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;500;700&display=swap');
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css";
+
+html{height: 100%;}
+
+body{
+margin: 0;
+min-height: 100%;
+font-family: 'Josefin Sans', sans-serif;
+font-weight: 400;        
+background-color: #BBD1EA;
+}
+
+body::after{
+  content:'';
+  display: block;
+  height: 135px;
+}
+
+ul, ol {list-style:none;}
+.nav > li {float:left;}
+
+.nav li a {
+    font-size: 14px;
+    background-color:#000;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 12px;
+    display:block;
+    transition: 0.5s;
+}
+
+.nav li a:hover {color:rgb(82, 82, 82);transform: scale(1.05);transition: 0.75s;}
+
+.nav li ul {
+    display:none;
+    position:absolute;
+    min-width:100px;
+}
+.nav li:hover > ul {display:block;transform: scale(1.05);transition: 0.75s;}
+.nav li ul li {position:relative;}
+.nav li ul li ul {right:-100px;top:0px;}
+.nav .mod:hover{transition: 0.75s;}
+
+.mb-auto{
+  background-color: #000;
+  padding: 0;
+  margin: 0 auto;
+  box-shadow: -2px 20px 28px -2px rgba(0,0,0,0.06);
+  width:100% ;
+  height: 75px;
+}
+
+.mb-auto h3{
+  font-family: 'Josefin Sans', sans-serif;
+  color:white;
+  font-weight: 900;
+  font-size: 35px;
+  text-align: center;
+}
+
+.mb-auto{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {padding-left: 100px;}
+
+.menu a{
+  padding-left: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color:white;
+  text-decoration: none;
+}
+
+.menu a:hover{color:rgb(59, 59, 59);text-decoration: none;}      
+
+.menu nav a:visited{color:white;text-decoration: none;}
+
+.title{
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 25px;
+}
+
+.title{display: flex;flex-direction: row;align-items: center;}
+
+.title h1{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.title hr{
+  margin: 20px;
+  width: 15%;
+  background-color: #04080F;
+  height: 1px;
+  border: 1px solid #04080F;
+}
+
+.form{position: relative;top: -65px;text-align: center;}
+
+.cardGeneral{
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px,300px));
+  gap: 75px;
+}
+
+.card{
+  width: 300px;
+  font-size: 20px;
+  background-color: #507DBC;
+  padding: 20px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  box-shadow: -7px 10px 9px -1px rgba(0,0,0,0.29);
+  transition: 0.75s;
+}
+
+.card hr{
+  background-color: #000;
+  border: 1px solid black;
+}
+
+.card:hover{
+  transition: 0.75s;
+  transform: scale(1.05);
+}
+
+
+footer{
+  position: absolute;
+  width: 100%;
+  height: 165px;
+  background-color: #8bb0e3;
+}
+
+footer h3{text-align: center;font-size: 20px;padding-top: 15px;}
+
+.copyright p{padding: 10px;font-size: 16px;}
+.copyright{display: flex;flex-direction: row;align-items: center;justify-content: center;}
+.copyright section i{padding-left: 20px;color:black;}
+
+  
+
+</style>
+
+</head>
+
+<body>
+  
+<div>
+
+  <header class="mb-auto">
+      <h3> API ONE PIECE </h3>
+      <nav class="menu">
+          <ul class="nav">
+				<li><a href="/home">HOME</a></li>
+				<li><a href="/characters">PERSONAJES</a></li>
+				<li><a href="/modifications" class="mod" > CREAR PERSONAJE </a>
+				</li>
+			</ul>
+      </nav>
+  </header>
+
+  <div class="title">
+    <hr>
+    <i class="fa fa-angle-double-left fa-3x" aria-hidden="true"></i>
+    <h1>CHARACTERS</h1>
+    <i class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i>
+    <hr>
+  </div>
+  
+
+  <!--
+    <form action="/characters" method="get" class="form">
+            <label for="id">Nombre del personaje</label>
+            <input type="text" name="nom">
+            <input type="submit">
+  </form>
+  <div class="card">
+      <div class="card2">
+        <div class="card-body">
+            <h3 class="card-title"> {{ username }} </h3>
+            <hr>
+            <p class="card-text">
+              Category -> {{ category }} <br>
+              Weapon -> {{ weapon }} <br>
+              Strength -> {{ strength }} <br>
+              Speed -> {{ speed }}
+            </p>
+        </div>
+      </div>
+  </div>
+  -->
+  
+  <div class="cardGeneral">
+
+      <div class="card cardLuffy">
+        <div>
+            <h3> {{ rqChar['luffy']['name'] }} </h3>
+            <hr>
+            <p>
+              Category -> {{ rqChar['luffy']['category'] }} <br>
+              Weapon -> {{ rqChar['luffy']['weapon'] }} <br>
+              Strength -> {{ rqChar['luffy']['strength'] }} <br>
+              Speed -> {{ rqChar['luffy']['speed'] }}
+            </p>
+        </div>
+      </div>
+
+      <div class="card cardZoro">
+        <div>
+          <h3> {{ rqChar['zoro']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['zoro']['category'] }} <br>
+            Weapon -> {{ rqChar['zoro']['weapon'] }} <br>
+            Strength -> {{ rqChar['zoro']['strength'] }} <br>
+            Speed -> {{ rqChar['zoro']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardSanji">
+        <div>
+          <h3> {{ rqChar['sanji']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['sanji']['category'] }} <br>
+            Weapon -> {{ rqChar['sanji']['weapon'] }} <br>
+            Strength -> {{ rqChar['sanji']['strength'] }} <br>
+            Speed -> {{ rqChar['sanji']['speed'] }}
+          </p>
+        </div>
+      </div>
+      
+      <div class="card cardTashigi">
+        <div>
+          <h3> {{ rqChar['tashigi']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['tashigi']['category'] }} <br>
+            Weapon -> {{ rqChar['tashigi']['weapon'] }} <br>
+            Strength -> {{ rqChar['tashigi']['strength'] }} <br>
+            Speed -> {{ rqChar['tashigi']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardBuggy">
+        <div>
+          <h3> {{ rqChar['buggy']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['buggy']['category'] }} <br>
+            Weapon -> {{ rqChar['buggy']['weapon'] }} <br>
+            Strength -> {{ rqChar['buggy']['strength'] }} <br>
+            Speed -> {{ rqChar['buggy']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardMr3">
+        <div>
+            <h3> {{ rqChar['mr3']['name'] }} </h3>
+            <hr>
+            <p>
+              Category -> {{ rqChar['mr3']['category'] }} <br>
+              Weapon -> {{ rqChar['mr3']['weapon'] }} <br>
+              Strength -> {{ rqChar['mr3']['strength'] }} <br>
+              Speed -> {{ rqChar['mr3']['speed'] }}
+            </p>
+        </div>
+      </div>
+
+      <div class="card cardXebec">
+        <div>
+          <h3> {{ rqChar['xebec']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['xebec']['category'] }} <br>
+            Weapon -> {{ rqChar['xebec']['weapon'] }} <br>
+            Strength -> {{ rqChar['xebec']['strength'] }} <br>
+            Speed -> {{ rqChar['xebec']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardKaido">
+        <div>
+            <h3> {{ rqChar['kaido']['name'] }} </h3>
+            <hr>
+            <p>
+              Category -> {{ rqChar['kaido']['category'] }} <br>
+              Weapon -> {{ rqChar['kaido']['weapon'] }} <br>
+              Strength -> {{ rqChar['kaido']['strength'] }} <br>
+              Speed -> {{ rqChar['kaido']['speed'] }}
+            </p>
+        </div>
+      </div>
+
+      <div class="card cardBigMom">
+        <div>
+          <h3> {{ rqChar['big mom']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['big mom']['category'] }} <br>
+            Weapon -> {{ rqChar['big mom']['weapon'] }} <br>
+            Strength -> {{ rqChar['big mom']['strength'] }} <br>
+            Speed -> {{ rqChar['big mom']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardAkainu">
+        <div>
+          <h3> {{ rqChar['akainu']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['akainu']['category'] }} <br>
+            Weapon -> {{ rqChar['akainu']['weapon'] }} <br>
+            Strength -> {{ rqChar['akainu']['strength'] }} <br>
+            Speed -> {{ rqChar['akainu']['speed'] }}
+          </p>
+        </div>
+      </div>
+      
+      <div class="card cardKizaru">
+        <div>
+          <h3> {{ rqChar['kizaru']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['kizaru']['category'] }} <br>
+            Weapon -> {{ rqChar['kizaru']['weapon'] }} <br>
+            Strength -> {{ rqChar['kizaru']['strength'] }} <br>
+            Speed -> {{ rqChar['kizaru']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardFujitora">
+        <div>
+            <h3> {{ rqChar['fujitora']['name'] }} </h3>
+            <hr>
+            <p>
+              Category -> {{ rqChar['fujitora']['category'] }} <br>
+              Weapon -> {{ rqChar['fujitora']['weapon'] }} <br>
+              Strength -> {{ rqChar['fujitora']['strength'] }} <br>
+              Speed -> {{ rqChar['fujitora']['speed'] }}
+            </p>
+        </div>
+      </div>
+
+      <div class="card cardGarp">
+        <div>
+          <h3> {{ rqChar['garp']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['garp']['category'] }} <br>
+            Weapon -> {{ rqChar['garp']['weapon'] }} <br>
+            Strength -> {{ rqChar['garp']['strength'] }} <br>
+            Speed -> {{ rqChar['garp']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+      <div class="card cardSmoker">
+        <div>
+            <h3> {{ rqChar['smoker']['name'] }} </h3>
+            <hr>
+            <p>
+              Category -> {{ rqChar['smoker']['category'] }} <br>
+              Weapon -> {{ rqChar['smoker']['weapon'] }} <br>
+              Strength -> {{ rqChar['smoker']['strength'] }} <br>
+              Speed -> {{ rqChar['smoker']['speed'] }}
+            </p>
+        </div>
+      </div>
+
+      <div class="card cardKoby">
+        <div>
+          <h3> {{ rqChar['koby']['name'] }} </h3>
+          <hr>
+          <p>
+            Category -> {{ rqChar['koby']['category'] }} <br>
+            Weapon -> {{ rqChar['koby']['weapon'] }} <br>
+            Strength -> {{ rqChar['koby']['strength'] }} <br>
+            Speed -> {{ rqChar['koby']['speed'] }}
+          </p>
+        </div>
+      </div>
+
+  </div>
+
+  <footer>
+
+    <h3> API ONE PIECE <svg xmlns="http://www.w3.org/2000/svg" width=20px viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M368 128C368 172.4 342.6 211.5 304 234.4V256C304 273.7 289.7 288 272 288H175.1C158.3 288 143.1 273.7 143.1 256V234.4C105.4 211.5 79.1 172.4 79.1 128C79.1 57.31 144.5 0 223.1 0C303.5 0 368 57.31 368 128V128zM167.1 176C185.7 176 199.1 161.7 199.1 144C199.1 126.3 185.7 112 167.1 112C150.3 112 135.1 126.3 135.1 144C135.1 161.7 150.3 176 167.1 176zM280 112C262.3 112 248 126.3 248 144C248 161.7 262.3 176 280 176C297.7 176 312 161.7 312 144C312 126.3 297.7 112 280 112zM3.378 273.7C11.28 257.9 30.5 251.5 46.31 259.4L223.1 348.2L401.7 259.4C417.5 251.5 436.7 257.9 444.6 273.7C452.5 289.5 446.1 308.7 430.3 316.6L295.6 384L430.3 451.4C446.1 459.3 452.5 478.5 444.6 494.3C436.7 510.1 417.5 516.5 401.7 508.6L223.1 419.8L46.31 508.6C30.5 516.5 11.28 510.1 3.378 494.3C-4.526 478.5 1.881 459.3 17.69 451.4L152.4 384L17.69 316.6C1.881 308.7-4.526 289.5 3.378 273.7V273.7z"/></svg> </h3>
+
+    <div class="copyright">
+      <p> <i class="fa fa-copyright fa-1x" aria-hidden="true"></i> Copyright 2003, 2022 API ONEPIECE | Todos los derechos reservados.</p>
+      <section>
+          <a href="#" class="twitter"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+          <a href="#" class="facebook"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+          <a href="#" class="pinterest"><i class="fa fa-pinterest fa-2x" aria-hidden="true"></i></a>
+          <a href="#" class="instagram"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+      </section>
+    </div>
+
+  </footer>
+
+</div>
+</body>
+</html>
+
+<!--
+    .card2{
+position: relative;
+top: 200px;
+width: 200px;
+margin: 0 auto;
+background-color: aliceblue;
+padding: 10px;
+border-radius: 20px;
+border: 2px dotted black;
+}
+
+.form{
+position: relative;
+top: -50px;      
+text-align: center;
+}
+
+     <div class="card">
+        <div class="card2">
+         <img class="card-img-top" src="./images/luffy.png" alt="luffy">
+         <div class="card-body">
+             <h2 class="card-title">{{ username }}</h2>
+             <hr>
+             <p class="card-text">
+                 Category = {{ category }} <br>
+                Weapon = {{ weapon }} <br>
+                Strength = {{ strength }} <br>
+                Speed = {{ speed }}
+             </p>
+         </div>
+        </div>
+
+        <form action="/characters/id" method="get" class="form">
+            <label for="id">ID del personaje</label>
+            <input type="number" name="id">
+            <input type="submit">
+        </form>
+    </div>
+
+-->
+   
+     
+   

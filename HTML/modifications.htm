@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+  <head>
+    <title>API ONE PIECE | Crear personaje </title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;500;700&display=swap');
+      @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css";
+      @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+
+      html{height: 100%;}
+
+      body{
+      margin: 0;
+      min-height: 100%;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 400;        
+      background-color: #BBD1EA;
+      }
+
+      body::after{
+        content:'';
+        display: block;
+        height: 135px;
+      }
+
+      ul, ol {list-style:none;}
+      .nav > li {float:left;}
+
+      .nav li a {
+          font-size: 14px;
+          background-color:#000;
+          color:#fff;
+          text-decoration:none;
+          padding:10px 12px;
+          display:block;
+          transition: 0.5s;
+      }
+
+      .nav li a:hover {color:rgb(82, 82, 82);}
+
+      .nav li ul {
+          display:none;
+          position:absolute;
+          min-width:100px;
+      }
+      .nav li:hover > ul {display:block;}
+      .nav li ul li {position:relative;}
+      .nav li ul li ul {right:-100px;top:0px;}
+      .nav .mod:hover{transition: 0.75s;}
+
+      .mb-auto{
+        background-color: #000;
+        padding: 0;
+        margin: 0 auto;
+        box-shadow: -2px 20px 28px -2px rgba(0,0,0,0.06);
+        width:100% ;
+        height: 75px;
+      }
+
+      .mb-auto h3{
+        font-family: 'Josefin Sans', sans-serif;
+        color:white;
+        font-weight: 900;
+        font-size: 35px;
+        text-align: center;
+      }
+
+      .mb-auto{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .menu {padding-left: 100px;}
+
+      .menu a{
+        padding-left: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color:white;
+        text-decoration: none;
+      }
+
+      .menu a:hover{color:rgb(59, 59, 59);text-decoration: none;}      
+
+      .menu nav a:visited{color:white;text-decoration: none;}
+
+      .form{position: relative;top: -65px;text-align: center;}
+
+      .cardGeneral{
+        text-align: center;
+        display: grid;
+        grid-template-columns: 300px 300px 300px 300px;
+        grid-template-rows: 200px 200px 200px 200px;
+        grid-gap: 50px;
+      }
+
+      .card{
+        width: 300px;
+        font-size: 20px;
+        background-color: aliceblue;
+        padding: 10px;
+        border-radius: 20px;
+        border: 2px dotted black;
+      }
+      main{
+        padding: 2.5%;
+      }
+      main h1{
+        text-align: center;
+        padding: 10px;
+        font-size: 50px;
+      }
+      .create{
+        font-size: 20px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #617a9e;
+      }
+
+      main hr{
+      width: 50%;
+      background-color: #04080F;
+      height: 1px;
+      border: 1px solid #04080F;
+      }
+
+      footer{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 165px;
+        background-color: #8bb0e3;
+      }
+
+      footer h3{text-align: center;font-size: 20px;padding-top: 35px;}
+
+      .copyright p{padding: 10px;font-size: 16px;padding-top: 25px;}
+      .copyright{display: flex;flex-direction: row;align-items: center;justify-content: center;}
+      .copyright section i{padding-left: 20px;color:black;}
+
+      .popup .overlay{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background:rgba(0,0,0,0.06) ;
+        z-index: 1;
+        display: none;
+      }
+
+      .popup .content{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(0);
+        background: #fff;
+        width: 450px;
+        height: 220px;
+        z-index: 2;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      
+      .popup .close-btn{
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+        background: #222;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+      }
+
+      .popup.active .overlay{display: block;}
+
+      .popup.active .content{transition: 300ms;transform: translate(-50%,-50%) scale(0);}
+
+    </style>
+
+    <script>
+      function togglePopup(){document.getElementById("popup-1").classList.toggle("active");}
+    </script>
+
+  </head>
+
+  <body>
+
+      <header class="mb-auto">
+        <h3> API ONE PIECE </h3>
+        <nav class="menu">
+            <ul class="nav">
+          <li><a href="/home">HOME</a></li>
+          <li><a href="/characters">PERSONAJES</a></li>
+          <li><a href="/modifications" class="mod" > CREAR PERSONAJE </a>
+          </li>
+        </ul>
+        </nav>
+      </header>
+  
+      <main>
+        <h1> CREAR PERSONAJE </h1> 
+        
+          <div class="create">
+              <br>
+              <form action="/modifications" method="post" class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="nom" class="form-label">Nombre del personaje</label>
+                  <input type="text" class="form-control" name="nom" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="afiliation" class="form-label">Afiliación </label>
+                  <select name="afiliation" class="form-control" required>
+                    <option value="Straw Hat">Straw Hat</option>
+                    <option value="Pirates Buggy">Pirates Buggy</option>
+                    <option value="Pirates Rocks">Pirates Rocks</option>
+                    <option value="Admiral">Admiral</option>
+                    <option value="ViceAdmiral">ViceAdmiral</option>
+                    <option value="Lieutenant">Lieutenant</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="weapon" class="form-label">Arma del personaje</label>
+                  <select name="weapon" class="form-control" required>
+                    <option value="Sword">Sword</option>
+                    <option value="Greatsword">Greatsword</option>
+                    <option value="Gun">Gun</option>
+                    <option value="Rifle">Rifle</option>
+                    <option value="Chuchi">Chuchi</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="strength" class="form-label">Fuerza</label>
+                  <input type="number" name="strength" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="speed" class="form-label">Velocidad</label>
+                  <input type="number" name="speed" class="form-control" required>
+                </div>
+                
+                <div class="col-12">
+                  <button type="submit" onclick="togglePopup()" class="btn btn-primary" required>Crear personaje</button>
+                </div>
+
+              </form>
+            </div>
+
+      </main>
+
+      <footer>
+        <h3> API ONE PIECE <svg xmlns="http://www.w3.org/2000/svg" width=20px viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M368 128C368 172.4 342.6 211.5 304 234.4V256C304 273.7 289.7 288 272 288H175.1C158.3 288 143.1 273.7 143.1 256V234.4C105.4 211.5 79.1 172.4 79.1 128C79.1 57.31 144.5 0 223.1 0C303.5 0 368 57.31 368 128V128zM167.1 176C185.7 176 199.1 161.7 199.1 144C199.1 126.3 185.7 112 167.1 112C150.3 112 135.1 126.3 135.1 144C135.1 161.7 150.3 176 167.1 176zM280 112C262.3 112 248 126.3 248 144C248 161.7 262.3 176 280 176C297.7 176 312 161.7 312 144C312 126.3 297.7 112 280 112zM3.378 273.7C11.28 257.9 30.5 251.5 46.31 259.4L223.1 348.2L401.7 259.4C417.5 251.5 436.7 257.9 444.6 273.7C452.5 289.5 446.1 308.7 430.3 316.6L295.6 384L430.3 451.4C446.1 459.3 452.5 478.5 444.6 494.3C436.7 510.1 417.5 516.5 401.7 508.6L223.1 419.8L46.31 508.6C30.5 516.5 11.28 510.1 3.378 494.3C-4.526 478.5 1.881 459.3 17.69 451.4L152.4 384L17.69 316.6C1.881 308.7-4.526 289.5 3.378 273.7V273.7z"/></svg> </h3>
+        <div class="copyright">
+          <p> <i class="fa fa-copyright fa-1x" aria-hidden="true"></i> Copyright 2003, 2022 API ONEPIECE | Todos los derechos reservados.</p>
+          <section>
+              <a href="#" class="twitter"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+              <a href="#" class="pinterest"><i class="fa fa-pinterest fa-2x" aria-hidden="true"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+          </section>
+        </div>
+      </footer>
+
+      <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content">
+          <div class="close-btn" onclick='togglePopup()' >&times;</div>
+          <h1>Aviso</h1>
+          <p>Personaje creado correctamente</p>
+        </div>
+      </div>
+
+  </body>
+</html>
+
+   
+     
+   
+
+
+
+    
