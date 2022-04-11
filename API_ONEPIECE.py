@@ -161,6 +161,6 @@ def deleteCharacter(id: int):
     cursor.execute("SET FOREIGN_KEY_CHECKS=0;")
     cursor.execute(f"delete from characters where ID_CHARACTER = {id}")
     cursor.execute("SET FOREIGN_KEY_CHECKS=1;")
-    conn.commit;
+    conn.commit();
     
 
